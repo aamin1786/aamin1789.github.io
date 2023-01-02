@@ -1,154 +1,117 @@
-import React from 'react';
-import { StyleSheet
-, Text,Dimensions,TouchableOpacity,ScrollView,View,Button,NavigationContainer,Stack
-, SafeAreaView
-, Image } from 'react-native';
-import Swiper from 'react';
-//import {NavigationContainer} from '@react-navigation/native';
-//import {createStackNavigatior} from '@react-navigation/stack';
-import Home from './src/Home';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
 
-const decoration = StyleSheet.create({
-rex: {
-flex: 1,
-backgroundColor: "dodgerblue",
-borderWidth: 20,
-borderColor: "#b4fa57",
-},
-wex:{
-flex: 1,
-}
+import React from 'react';
+import type {Node} from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
+
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+
+/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
+ * LTI update could not be added via codemod */
+const Section = ({children, title}): Node => {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
+    </View>
+  );
+};
+
+const App: () => Node = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  return (
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundStyle.backgroundColor}
+      />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <Header />
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More">
+            Read the docs to discover what to do next:
+          </Section>
+          <LearnMoreLinks />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
+  },
 });
 
-
-//function App() {
-  //   return (
-    //     <NavigationContainer>
-      //   <Stack.Navigator>
-        //<Stack.screen name="Home" Component={Home} options={{title:'Gallery'}}/>
-       // <Stack.screen name="showImage" Component={showImage} options={{headerShown: false}}/>
-        // </Stack.Navigator>
-        // </NavigationContainer>
-     //);
-// }
-
-let deviceHeight = Dimensions.get("window").height;
-let deviceWidth = Dimensions.get("window").width;
-
-const Result = () => {
-return (
-<ScrollView>
-<View style={{
-     display : 'flex',
-     flexdirection:'row',
-     flex:1,
-     flexWrap:"wrap"
-}}>
-
-    
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<></>
-<Image source={{ uri: 'https://img.freepik.com/premium-photo/generic-brandless-modern-sport-car_110488-1758.jpg?w=2000'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2,
- //backgroundColor: black,
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image
-source={{ uri: 'https://cdn.pixabay.com/photo/2016/11/22/23/44/porsche-1851246__340.jpg'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image
-source={{ uri: 'https://cdn.pixabay.com/photo/2012/05/29/00/43/car-49278__340.jpg'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image
-source={{ uri: 'https://cdn.pixabay.com/photo/2012/11/02/13/02/car-63930__340.jpg'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image
-source={{ uri: 'https://cdn.pixabay.com/photo/2016/11/19/11/26/automotive-1838744__340.jpg'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image
-source={{ uri: 'https://cdn.pixabay.com/photo/2014/09/07/22/34/car-race-438467__340.jpg'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image
-source={{ uri: 'https://cdn.pixabay.com/photo/2017/12/28/23/41/car-3046424__340.jpg'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image
-source={{ uri: 'https://cdn.pixabay.com/photo/2019/10/30/07/04/car-4588860__340.png'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image
-source={{ uri: 'https://cdn.pixabay.com/photo/2016/03/11/02/08/speedometer-1249610__340.jpg'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<TouchableOpacity onPress={() => console.log("Image tapped")}>
-<Image source={{ uri: 'https://images.hdqwalls.com/wallpapers/lambo-tron-drifting-5k-yb.jpg'}}
-style={{
- height:deviceHeight /3-8,
- width: deviceWidth / 1-6,
- borderRadius: 10,margin: 2
-}}
-/>
-</TouchableOpacity>
-<Button title="select images" onPress={() => alert("you have selected your image sucessfully")}/>
-</View>
-</ScrollView>
-);
-}
-export default Result;
+export default App;
